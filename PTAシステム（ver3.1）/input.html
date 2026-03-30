@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>PTA名簿入力</title>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      background-color: rgba(254, 222, 194, 0.7);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    /* 保護者・子ども共通デザイン */
+    .parent-block,
+    .child {
+      border: 1px solid #ccc;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    .parent-block label,
+    .child label {
+      display: block;
+      margin-top: 6px;
+      font-weight: bold;
+    }
+
+    /* ラジオボタン行 */
+    .radio-row {
+      display: flex;
+      gap: 25px;
+      margin: 10px 0;
+    }
+
+    .radio-row label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    /* スマホ向け */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      input {
+        font-size: 18px;
+        padding: 12px;
+      }
+
+      button {
+        width: 100%;
+        font-size: 18px;
+      }
+    }
+    .removeChild {
+  background: #ff6666;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+  </style>
+</head>
+
+<body>
+
+<h2>〇〇中学校PTA名簿入力</h2>
+
+<form id="ptaForm">
+
+  <!-- 保護者情報 -->
+  <h3>保護者情報</h3>
+  <div class="parent-block">
+
+    <label>保護者名</label>
+    <input name="parentName">
+
+    <label>メール</label>
+    <input name="email">
+
+    <label>電話</label>
+    <input name="phone">
+<label>係</label>
+<select id="editRole">
+  <option value="">選択してください</option>
+  <option value="会長">会長</option>
+  <option value="副会長">副会長</option>
+  <option value="書記">書記</option>
+  <option value="会計">会計</option>
+  <option value="広報">広報</option>
+  <option value="その他">その他</option>
+</select>
+<br>
+
+   
+
+    <h4>安互加入について</h4>
+    <div class="radio-row">
+      <label><input type="radio" name="joinAngo" value="yes"> 加入する</label>
+      <label><input type="radio" name="joinAngo" value="no"> 加入しない</label>
+    </div>
+
+  </div>
+
+  <!-- 子ども情報 -->
+  <h3>子ども情報</h3>
+  <div id="children">
+    <div class="child">
+      <label>氏名</label>
+      <input name="childName">
+
+      <label>学年</label>
+      <input name="grade" type="number" min="1" max="3">
+
+      <label>クラス</label>
+      <input name="class" type="number" min="1">
+
+      <label>学籍番号</label>
+      <input name="studentId">
+       <h4>PTA入会について</h4>
+  <div class="radio-row">
+    <label><input type="radio" name="joinPta_0" value="yes"> 入会する</label>
+    <label><input type="radio" name="joinPta_0" value="no"> 入会しない</label>
+  </div>
+
+  <h4>共済加入について</h4>
+  <div class="radio-row">
+    <label><input type="radio" name="joinKyosai_0" value="yes"> 加入する</label>
+    <label><input type="radio" name="joinKyosai_0" value="no"> 加入しない</label>
+  </div>
+     <button type="button" class="removeChild">削除</button>
+    </div>
+  </div>
+
+  <button type="button" id="addChild">＋ 子どもを追加</button>
+  <button type="submit">送信</button>
+
+</form>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<script src="input.js"></script>
+
+</body>
+</html>
